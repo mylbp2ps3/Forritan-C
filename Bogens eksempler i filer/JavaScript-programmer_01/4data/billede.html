@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Billede</title>
+</head>
+
+<body>
+<script>
+const BREDDE = 8; // Billedets konstante bredde
+/* Visning af areal */
+function udskrivAreal(hoejde) {
+  var areal = BREDDE * hoejde;
+  document.write("Areal: " + areal + "<br/>");
+}
+/* Visning af omkreds */
+function udskrivOmkreds(hoejde) {
+  var omkreds = 2 * (BREDDE + hoejde);
+  document.write("Omkreds: " + omkreds + "<br/>");
+}
+var hoejde = 3; // Højden på billede 1
+udskrivAreal(hoejde); udskrivOmkreds(hoejde);
+hoejde = 5; // Højden på billede 2
+udskrivAreal(hoejde); udskrivOmkreds(hoejde);
+</script>
+</body>
+
+</html>

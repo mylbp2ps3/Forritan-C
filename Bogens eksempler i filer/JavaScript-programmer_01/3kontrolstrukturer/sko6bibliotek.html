@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sko, udgave 6: Bibliotek</title>
+</head>
+
+<body>
+  <h1>Skopriser i USA</h1>
+  <p>Gennemsnitsprisen i DKK er:
+    <ul>
+      <li>Ved 1 par sko: <span id="prcDkkUS1"></span>
+      </li>
+      <li>Ved 2 par sko: <span id="prcDkkUS2"></span>
+      </li>
+      <li>Ved 3 par sko: <span id="prcDkkUS3"></span>
+      </li>
+      <li>Ved 4 par sko: <span id="prcDkkUS4"></span>
+      </li>
+    </ul>
+  </p>
+  <h1>Skopriser i Kina</h1>
+  <p>Gennemsnitsprisen i DKK er:
+    <ul>
+      <li>Ved 1 par sko: <span id="prcDkkCh1"></span>
+      </li>
+      <li>Ved 2 par sko: <span id="prcDkkCh2"></span>
+      </li>
+      <li>Ved 3 par sko: <span id="prcDkkCh3"></span>
+      </li>
+      <li>Ved 4 par sko: <span id="prcDkkCh4"></span>
+      </li>
+    </ul>
+  </p>
+<script type="text/javascript">
+/* Returnerer array med gennemsnitspriser 1-4 */
+function prices(price, rate) {
+  var pricesDkk = []; // Array til gennemsnit
+  for (var i = 1; i != 5; i = i + 1) { // Beregn
+    prcDkk = price * rate * i; // Pris: i par
+    if (prcDkk > 80) { // Varen fortoldes
+      if (prcDkk > 1150) {
+        prcDkk = prcDkk * 1.17; // Told
+      }
+      prcDkk = prcDkk * 1.25; // Moms
+      prcDkk = prcDkk + 160; // Importgebyr
+    }
+    pricesDkk[i-1] = prcDkk / i; // Gennemsnitspris
+  }
+  return pricesDkk;
+}
+
+// USA
+var prcUsd = prompt('Hvad koster dine sko i USD?');
+var rateUsd =
+  prompt('Hvad koster 1 USD i DKK (f.eks. 7.01)?');
+var pricesUS = prices(prcUsd, rateUsd);
+for (var i = 1; i != 5; i = i + 1) { // Visning
+  document.getElementById('prcDkkUS' + i).
+    innerHTML = pricesUS[i-1].toFixed(2);
+}
+// Kina
+var prcYuan = prompt('Hvad koster dine sko i yuan?');
+var rateYuan =
+  prompt('Hvad koster 1 yuan i DKK (f.eks. 1.05)?');
+var pricesCh = prices(prcYuan, rateYuan);
+for (var i = 1; i != 5; i = i + 1) { // Visning
+  document.getElementById('prcDkkCh' + i).
+    innerHTML = pricesCh[i-1].toFixed(2);
+}
+</script>
+</body>
+
+</html>

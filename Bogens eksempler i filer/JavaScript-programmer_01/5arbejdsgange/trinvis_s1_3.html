@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trinvis forbedring: s1, 3. udgave</title>
+</head>
+
+<body style="margin:0">
+<canvas id="myCanvas" width="800" height="450"
+  style="border: 1px solid black"></canvas>
+
+<script type="text/javascript">
+/* Tegner en streg */
+function drawLine(ctx, x0, y0, x1, y1) {
+  ctx.moveTo(x0, y0);
+  ctx.lineTo(x1, y1);
+  ctx.strokeStyle = "#ff0000";
+  ctx.stroke();
+}
+/* Tegner en trekant ved musemarkøren */
+var drawTriangle = function(event) {
+  // Få fat i lærredets kontekst
+  var ctx = event.target.getContext('2d');
+  var x = event.clientX; var y = event.clientY;
+  // Tegn trekant med fast længde, retning, farve
+  drawLine(ctx, x-25, y+25, x+25, y+25);
+  drawLine(ctx, x-25, y+25, x,    y-25);
+  drawLine(ctx, x+25, y+25, x,    y-25);
+}
+// Knyt funktionen til museklik på kanvas
+document.getElementById('myCanvas').
+  addEventListener('click', drawTriangle, false);
+</script>
+</body>
+
+</html>

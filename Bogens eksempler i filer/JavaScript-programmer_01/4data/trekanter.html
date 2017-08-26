@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trekanter</title>
+</head>
+<body>
+  <h1>Retvinklet trekant</h1>
+  <p>Hypotenusen: <input type="text" id="hyp"
+                  autofocus/></p>
+  <p>En spids vinkel:
+    <input type="text" id="ang"/></p>
+  <p><input type="button" id="button"
+      value="Beregn"></p>
+  <p>Modstående side til vinklen:
+    <span id="opp"></span></p>
+
+  <script type="text/javascript">
+  /* Beregner modstående ud fra hypo og vinkel */
+  function oppFromHyp(hyp, ang) {
+    // Omregn fra radianer til grader ved Math.sin
+    var angDeg = ang * Math.PI / 180;
+    // Beregn modstående side ud fra formel.
+    var opposite = hyp * Math.sin(angDeg);
+    return opposite;
+  }
+  /* Ved klik skal argumenterne gives til funk. */
+  var clickEvent = function( event ) {
+    var hyp = document.getElementById('hyp').value;
+    var ang = document.getElementById('ang').value;
+    document.getElementById('opp').innerHTML =
+      oppFromHyp(hyp, ang);
+  }
+  // Knyt hændelsesfunktionen til tryk på knappen
+  document.getElementById("button").
+    addEventListener("click", clickEvent, false);
+  </script>
+
+</body>
+</html>

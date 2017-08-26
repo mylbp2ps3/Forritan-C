@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lykkehjulet</title>
+</head>
+<body>
+<h1>Lykkehjulet</h1>
+<p>Tryk på en tast for at gætte på et bogstav.</p>
+<script>
+/* Lykkehjulet */
+var word; // Hemmeligt ord
+var attempts; // Antal forsøg
+var category = "Dansk by"; // Kategori
+document.write("<h2>Kategori: " + category + "</h2>");
+// Mulige hemmelige ord
+var words = ["København", "Aarhus", "Odense",
+  "Aalborg", "Esbjerg"];
+/* Funktion til at returnere tilfældigt heltal */
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min))
+    + min;
+}
+// Vælg et tilfældigt ord som skal gættes.
+word = words[getRandomInt(0, words.length)];
+// Status på spillet i et array
+var guessed = [];
+/* Funktion til at opdatere tavlen */
+function updateBoard() {
+  var letter; // Bogstav i gennemløb af ord
+  var newBoard = document.createElement("P");
+  newBoard.appendChild(document.createTextNode("Tavlen: "));
+  // Løb igennem alle bogstaver i ordet
+  for (i = 0; i < word.length; i++) {
+    if (guessed[i]) {
+      letter = word.charAt(i);
+    } else {
+      // Vis en streg, hvis bogstavet ikke er gættet.
+      letter = "_";
+    }
+    // Tilføj bogstaver på skærmen.
+    letterNode = document.createTextNode(letter);
+    newBoard.appendChild(letterNode);
+  }
+  document.body.appendChild(newBoard);
+}
+/* Gætter på et bogstav ved tastetryk */
+var keyEvent = function(event) {
+  var letter;
+  for (i = 0; i < word.length; i++) {
+    letter = word.substring(i, i+1).toLowerCase()
+      .charCodeAt(0);
+    // Undersøg for hvert tegn om det er gættet
+    if (letter == event.keyCode) {
+      guessed[i] = true;
+    }
+  }
+  updateBoard();
+}
+document.body.
+  addEventListener("keypress", keyEvent, false);
+// Start med at vise tavlen.
+updateBoard();
+</script>
+</body>
+
+</html>

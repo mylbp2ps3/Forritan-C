@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sko, udgave 2: Forgrening</title>
+</head>
+
+<body>
+<p>Prisen i DKK er: <span id="prcDkk"></span></p>
+<script type="text/javascript">
+var prcUsd = prompt('Hvad koster dine sko i USD?');
+var rateUsd =
+  prompt('Hvad koster 1 USD i DKK (f.eks. 7.01)?');
+var prcDkk = prcUsd * rateUsd;
+if (prcDkk > 80) { // Varen fortoldes
+  if (prcDkk > 1150) {
+    prcDkk = prcDkk * 1.17; // Told
+  }
+  prcDkk = prcDkk * 1.25; // Moms
+  prcDkk = prcDkk + 160; // Importgebyr
+}
+document.getElementById('prcDkk').innerHTML =
+  prcDkk;
+</script>
+</body>
+
+</html>

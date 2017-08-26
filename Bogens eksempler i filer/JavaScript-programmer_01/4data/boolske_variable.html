@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Boolske variable</title>
+</head>
+
+<body>
+<script>
+/** Beregner egenskaber ud fra boolsk algebra ***/
+// Array til mænd
+var M = ["Jens", "Viktor", "Birk", "Markus"];
+// Array til børn
+var C = ["Viktor", "Birk", "Markus", "Ida"];
+// Array til venstrehåndede
+var L = ["Birk", "Markus", "Dorte", "Marie"];
+
+console.log(isFemale("Jens"));
+console.log(isFemale("Dorte"));
+console.log("--");
+console.log(isBoy("Jens"));
+console.log(isBoy("Dorte"));
+console.log(isBoy("Markus"));
+console.log("--");
+console.log(isWomanOrChild("Jens"));
+console.log(isWomanOrChild("Dorte"));
+console.log(isWomanOrChild("Markus"));
+
+/* Undersøger om name er hunkøn. */
+function isFemale(name) {
+  return !contains(M, name);
+}
+
+/* Undersøger om name er en dreng. */
+function isBoy(name) {
+  return contains(M, name) && contains(C, name);
+}
+
+/* Undersøger om name er kvinde eller barn */
+function isWomanOrChild(name) {
+  return !contains(M, name) || contains(C, name);
+}
+
+/* Undersøger om array indeholder element. */
+function contains(array, element) {
+  for (var i = 0; i < array.length; i++) {
+    // Returner sand, hvis dette er elementet.
+    if (array[i] == element) return true;
+  }
+  // Returner falsk, hvis den ikke blev fundet.
+  return false;
+}
+</script>
+</body>
+
+</html>

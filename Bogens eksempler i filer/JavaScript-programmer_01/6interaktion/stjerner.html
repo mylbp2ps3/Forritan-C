@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Stjerner</title>
+</head>
+
+<body>
+<canvas id="himmel"
+  style="background-color: black">
+  Din browser understøtter ikke canvas</canvas>
+<script type="text/javascript">
+/**** Viser en nattehimmel fyldt med stjerner ***/
+// Vinduets størrelse;
+var width = 1600; var height = 900;
+var canvas = document.getElementById("himmel");
+canvas.width = width; canvas.height = height;
+// Antal stjerner
+var number = Math.round(width/7);
+// Koordinater og radius
+var xs = new Array(number);
+var ys = new Array(number);
+var rads = new Array(number);
+// Sæt tilfældig data for enhver stjerne.
+for (var i = 0; i < xs.length; i++) {
+  xs[i] = getRandomIntInclusive(0, width);
+  ys[i] = getRandomIntInclusive(0, height);
+  rads[i] = getRandomIntInclusive(1, 5);
+}
+// Tegn stjernerne med hvid farve
+var himmel = canvas.getContext("2d");
+himmel.fillStyle = "white";
+for (var i = 0; i < xs.length; i++) {
+  // Tegn en fyldt cirkel med funktionen arc
+  himmel.beginPath();
+  himmel.arc(xs[i], ys[i], rads[i], 0, 2*Math.PI);
+  himmel.fill();
+}
+/* Hjælpefunktion til tilfældige tal */
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor
+    (Math.random() * (max - min + 1)) + min;
+}
+</script>
+</body>
+
+</html>

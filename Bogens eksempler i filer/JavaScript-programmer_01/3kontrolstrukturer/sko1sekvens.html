@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sko, udgave 1: Sekvens</title>
+</head>
+
+<body>
+<p>Prisen i DKK er: <span id="prcDkk"></span></p>
+<script type="text/javascript">
+var prcUsd = prompt('Hvad koster dine sko i USD?');
+var rateUsd =
+  prompt('Hvad koster 1 USD i DKK (f.eks. 7.01)?');
+document.getElementById('prcDkk').innerHTML =
+  prcUsd * rateUsd;
+</script>
+</body>
+
+</html>

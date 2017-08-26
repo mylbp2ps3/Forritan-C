@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trinvis forbedring: s3, 4. udgave</title>
+</head>
+
+<body style="margin:0">
+  <table>
+    <tr>
+      <td>
+<canvas id="myCanvas" width="400" height="225"
+  style="border: 1px solid black"></canvas>
+</td>
+<td>
+  <form id="triangleForm"></form>
+  <button id="btnInvert">Vend om</button>
+</td>
+</tr>
+</table>
+<script type="text/javascript">
+// Få fat i lærredets kontekst
+var ctx = document.getElementById('myCanvas').
+  getContext('2d');
+/* Tegner en streg */
+function drawLine(x0, y0, x1, y1) {
+  ctx.beginPath();
+  ctx.moveTo(x0, y0);
+  ctx.lineTo(x1, y1);
+  ctx.stroke();
+}
+/* Håndterer klik på afkrydsning */
+var triangleChecked = function(event) {
+  drawTriangle(event.target);
+}
+/* Håndterer klik på canvas */
+var clickCanvas = function(event) {
+  // Opret trekanten i listen
+  var form = document.getElementById('triangleForm');
+  var newTriangle = document.createElement('input');
+  newTriangle.type = 'checkbox';
+  newTriangle.name = 'triangles';
+  newTriangle.style = 'display: block';
+  var x = event.clientX; var y = event.clientY;
+  newTriangle.value = [x, y];
+  newTriangle.checked = true;
+  newTriangle.addEventListener('change',
+    triangleChecked, false);
+  form.appendChild(newTriangle);
+  drawTriangle(newTriangle);
+}
+/* Tegner en trekant ud fra afkrydsningsfelt */
+function drawTriangle(checkbox) {
+  var coordinates = checkbox.value.split(',');
+  var x = parseInt(coordinates[0]);
+  var y = parseInt(coordinates[1]);
+  var color;
+  if (checkbox.checked) {
+    // Farv trekanten blå
+    color = "#0000ff";
+  } else {
+    // Farv trekanten rød
+    color = "#ff0000";
+  }
+  ctx.strokeStyle = color;
+  // Tegn ligebenet trekant med givet farve
+  var size = 30;
+  // Tegn grundlinje:
+  drawLine(x-size/2, y+size/2, x+size/2, y+size/2);
+  // Tegn venstre ben:
+  drawLine(x-size/2, y+size/2, x, y-size/2);
+  // Tegn højre ben:
+  drawLine(x+size/2, y+size/2, x, y-size/2);
+}
+/* Vender alle krydser om */
+var invertChecks = function(event) {
+  var form = document.getElementById('triangleForm');
+  for (let checkbox of form.children) {
+    if (checkbox.checked) checkbox.checked = false;
+    else checkbox.checked = true;
+    drawTriangle(checkbox);
+  }
+}
+// Knyt funktionen til museklik på kanvas
+document.getElementById('myCanvas').
+  addEventListener('click', clickCanvas, false);
+// Knyt funktionen til knappen "Vend om"
+  document.getElementById('btnInvert').
+    addEventListener('click', invertChecks, false);
+</script>
+</body>
+
+</html>

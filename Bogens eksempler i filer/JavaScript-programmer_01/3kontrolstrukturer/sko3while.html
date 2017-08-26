@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sko, udgave 3: While-løkke</title>
+</head>
+
+<body>
+<p>Prisen i DKK er:
+  <ul>
+    <li>1 par sko: <span id="prcDkk1"></span></li>
+    <li>2 par sko: <span id="prcDkk2"></span></li>
+    <li>3 par sko: <span id="prcDkk3"></span></li>
+    <li>4 par sko: <span id="prcDkk4"></span></li>
+  </ul>
+</p>
+<script type="text/javascript">
+var prcUsd = prompt('Hvad koster dine sko i USD?');
+var rateUsd =
+  prompt('Hvad koster 1 USD i DKK (f.eks. 7.01)?');
+var pricesDkk = []; // Array til gennemsnitspriser
+var i = 1; // Tæller til løkke
+var prcDkk;
+while (i != 5) { // Beregning af priser
+  prcDkk = prcUsd * rateUsd * i; // Pris for i par
+  if (prcDkk > 80) { // Varen fortoldes
+    if (prcDkk > 1150) {
+      prcDkk = prcDkk * 1.17; // Told
+    }
+    prcDkk = prcDkk * 1.25; // Moms
+    prcDkk = prcDkk + 160; // Importgebyr
+  }
+  pricesDkk[i-1] = prcDkk / i; // Gennemsnitlig pris
+  i = i + 1; // Tæller forøges
+}
+i = 1;
+while (i != 5) { // Visning af priser
+  document.getElementById('prcDkk'+i).innerHTML =
+    pricesDkk[i-1];
+  i = i + 1;
+}
+</script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Input med hændelser - Tastatur og mus</title>
+</head>
+<body>
+<p>1. Indtast tegn i feltet.</p>
+<textarea rows="2" cols="30" id="tekst" style="font-size: medium"></textarea>
+Antal tegn tilbage: <span id="antal">40</span>
+<p>2. Klik i boksen.</p>
+<p style="width:200px; height: 200px; border: solid 1px #ddd" id="boks"></p>
+
+<script>
+/* TEKSTFELTET */
+// Definerer hændelseshåndteringen som en
+// funktion med hændelsen som paramter
+var textEvent = function( event ) {
+  // Viser antal tegn som der er plads til
+  var antal = document.getElementById("antal");
+  antal.innerHTML =
+    (40 - event.target.value.length);
+  if (event.target.value.length > 40) {
+    antal.style.color = "red";
+  } else {
+    antal.style.color = "black";
+  }
+}
+// Knytter hændelseshåndteringen til tekstfeltet
+// og hændelsen tast-trykket-ned
+document.getElementById("tekst").
+  addEventListener("keydown", textEvent, false);
+
+/* BOKSEN */
+// Definerer hændelseshåndteringen som en
+// funktion med hændelsen som paramter
+var boxEvent = function( event ) {
+  // Viser koordinater for markøren ved klik
+  event.target.innerHTML = "(x, y) = (" +
+    event.clientX + ", " + event. clientY + ")";
+}
+// Knytter hændelseshåndteringen til boksen og
+// hændelsen museklik
+document.getElementById("boks").
+  addEventListener("click", boxEvent, false);
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trinvis forbedring: s2, 1. udgave</title>
+</head>
+
+<body style="margin:0">
+  <table>
+    <tr>
+      <td>
+<canvas id="myCanvas" width="400" height="225"
+  style="border: 1px solid black"></canvas>
+</td>
+<td>
+  <form id="triangleForm"></form>
+</td>
+</tr>
+</table>
+<script type="text/javascript">
+/* Tegner en streg */
+function drawLine(ctx, x0, y0, x1, y1) {
+  ctx.moveTo(x0, y0);
+  ctx.lineTo(x1, y1);
+  ctx.stroke();
+}
+/* Håndterer klik på afkrydsning */
+var triangleChecked = function(event) {
+  console.log("foo");
+}
+/* Tegner en trekant ved musemarkøren */
+var drawTriangle = function(event) {
+  // Få fat i lærredets kontekst
+  var ctx = event.target.getContext('2d');
+  // Tegn ligebenet trekant med givet farve
+  var x = event.clientX; var y = event.clientY;
+  var size = 30;
+  ctx.strokeStyle = "#0000ff";
+  // Tegn grundlinje:
+  drawLine(ctx, x-size/2, y+size/2, x+size/2,
+           y+size/2);
+  // Tegn venstre ben:
+  drawLine(ctx, x-size/2, y+size/2, x, y-size/2);
+  // Tegn højre ben:
+  drawLine(ctx, x+size/2, y+size/2, x, y-size/2);
+  // Opret trekanten i listen
+  var form = document.getElementById('triangleForm');
+  var newTriangle = document.createElement('input');
+  newTriangle.type = 'checkbox';
+  newTriangle.id = 'triangle' + form.childElementCount;
+  newTriangle.style = 'display: block';
+  newTriangle.addEventListener('change',
+    triangleChecked, false);
+  form.appendChild(newTriangle);
+}
+// Knyt funktionen til museklik på kanvas
+document.getElementById('myCanvas').
+  addEventListener('click', drawTriangle, false);
+</script>
+</body>
+
+</html>

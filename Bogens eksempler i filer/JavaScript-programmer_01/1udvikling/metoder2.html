@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Dato metoder version 2</title>
+<script>
+// Variable til repræsentation af dato
+var day;
+var month;
+var year;
+
+// Funktion til tælle datoen en dag op
+function setToNextDate() {
+	day = day + 1;
+	checkDayOverflow();
+}
+
+// Funktion til at vise datoen
+function showDate() {
+	alert(day + "-" + month + "-" + year);
+}
+
+function checkDayOverflow() {
+	if (day > 30) {
+		day = 1;
+		month = month + 1;
+	}
+}
+
+function test(day, month, year) {
+	alert("Dagen efter ...");
+	this.day = day;
+	this.month = month;
+	this.year = year;
+	showDate();
+	setToNextDate();
+	alert("... er ...");
+	showDate();
+}
+
+// Test af programmet med udvalgte datoer
+test(14, 5, 1979);
+test(30, 4, 1979);
+test(30, 5, 1979);
+test(28, 2, 1979);
+test(28, 2, 1980);
+test(28, 2, 1900);
+test(28, 2, 2000);
+test(31, 12, 2016);
+</script>
+</head>
+<body>
+</body>
+</html>

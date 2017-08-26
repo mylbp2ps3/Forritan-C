@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dynamisk HTML</title>
+</head>
+<body>
+<img id="flag" width="80"/>
+<script type="text/javascript">
+var changeFlag = function(event) {
+  if (event.target.src.includes("Angola")) {
+    event.target.src = "https://upload.wikimedia."
+      + "org/wikipedia/commons/thumb/9/9a/Flag_of"
+      + "_Afghanistan.svg/320px-Flag_of_"
+      + "Afghanistan.svg.png";
+  } else {
+    event.target.src = "https://upload.wikimedia."
+      + "org/wikipedia/commons/thumb/9/9d/Flag_of"
+      + "_Angola.svg/320px-Flag_of_Angola.svg.png";
+  }
+}
+document.getElementById("flag").
+  addEventListener("click", changeFlag, false);
+document.getElementById("flag").src =
+    "https://upload.wikimedia."
+  + "org/wikipedia/commons/thumb/9/9d/Flag_of"
+  + "_Angola.svg/320px-Flag_of_Angola.svg.png";
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "location":{
+    "name":"Aarhus Airport",
+    "region":"Aarhus",
+    "country":"Denmark",
+    "lat":56.3,
+    "lon":10.63,
+    "tz_id":"Europe/Copenhagen",
+    "localtime_epoch":1484052082,
+    "localtime":"2017-01-10 12:41"
+  },
+  "current":{
+    "last_updated_epoch":1484052082,
+    "last_updated":"2017-01-10 12:41",
+    "temp_c":3.0,
+    "temp_f":37.4,
+    "is_day":1,
+    "condition":{
+      "text":"Overcast",
+      "icon":"//cdn.apixu.com/weather/64x64/day/122.png",
+      "code":1009},
+    "wind_mph":8.1,
+    "wind_kph":13.0,
+    "wind_degree":180,
+    "wind_dir":"S",
+    "pressure_mb":1006.0,
+    "pressure_in":30.2,
+    "precip_mm":1.2,
+    "precip_in":0.05,
+    "humidity":93,
+    "cloud":0,
+    "feelslike_c":-0.4,
+    "feelslike_f":31.4
+  }
+}

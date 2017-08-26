@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Output</title>
+</head>
+<body>
+<script type="text/javascript">
+/* Tegner en sinuskurve på websiden. */
+var unit = 50;
+var newElement;
+for (var x = 0; x < 2 * Math.PI; x += 0.1) {
+  // Opret et punkt som HTML-element.
+  newElement = document.createElement("P");
+  // Sæt farve og størrelse på punktet.
+  stylePoint(newElement.style);
+  // Tilføj punktet til websiden.
+  document.body.appendChild(newElement);
+}
+function stylePoint(style) {
+  style.left = (unit * x + 100) + "px";
+  // y-aksen vender "modsat" i css.
+  style.top = (100 - unit * Math.sin(x)) + "px";
+  style.width = "3px";
+  style.height = "3px";
+  style.backgroundColor = "black";
+  style.position = "absolute";
+}
+</script>
+</body>
+</html>
