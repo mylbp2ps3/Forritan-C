@@ -36,7 +36,7 @@ void setToNextDate() {
 
 // Returner en streng i formatet dd-mm-åååå
 void showDate(int xpos, int ypos) {
-  text(day + "-" + month + "-" + year,xpos,ypos);
+  text(month + "/" + day + "/" + year,xpos,ypos);
 }
 
 void checkDayOverflow() {
